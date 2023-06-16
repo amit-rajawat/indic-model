@@ -7,12 +7,12 @@ RUN apt-get update && \
 
 # uncomment below line if this file exist in your machine
 # COPY ./en2indic.zip .
-RUN test -f "en2indic.zip" \
-    && unzip "en2indic.zip" -d . \
-    || { echo "File not found locally, downloading from URL"; \
-         curl -o en2indic.zip "https://ai4b-public-nlu-nlg.objectstore.e2enetworks.net/en2indic.zip"; \
-         unzip en2indic.zip -d .; \
-         rm en2indic.zip; }
+# RUN test -f "en2indic.zip" \
+#     && unzip "en2indic.zip" -d . \
+#     || { echo "File not found locally, downloading from URL"; \
+#          curl -o en2indic.zip "https://ai4b-public-nlu-nlg.objectstore.e2enetworks.net/en2indic.zip"; \
+#          unzip en2indic.zip -d .; \
+#          rm en2indic.zip; }
 
 RUN git clone https://github.com/AI4Bharat/indicTrans.git && \
     cd indicTrans && \
@@ -27,7 +27,7 @@ RUN pip install gunicorn flask sacremoses pandas mock sacrebleu tensorboardX && 
     pip install mosestokenizer subword-nmt pyarrow indic-nlp-library
 RUN cd /app/fairseq && pip install ./ && pip install xformers
 
-RUN rm -rf /app/en2indic.zip
+# RUN rm -rf /app/en2indic.zip
 
 ENV model_path=/app/en-indic
 
