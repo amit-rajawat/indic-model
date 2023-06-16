@@ -14,22 +14,23 @@ RUN apt-get update && \
 #          unzip en2indic.zip -d .; \
 #          rm en2indic.zip; }
 
-RUN git clone https://github.com/AI4Bharat/indicTrans.git && \
-    cd indicTrans && \
-    git clone https://github.com/anoopkunchukuttan/indic_nlp_library.git && \
-    git clone https://github.com/anoopkunchukuttan/indic_nlp_resources.git && \
-    git clone https://github.com/rsennrich/subword-nmt.git && \
-    cd .. && \
-    git clone https://github.com/pytorch/fairseq.git
+# RUN git clone https://github.com/AI4Bharat/indicTrans.git && \
+#     cd indicTrans && \
+#     git clone https://github.com/anoopkunchukuttan/indic_nlp_library.git && \
+#     git clone https://github.com/anoopkunchukuttan/indic_nlp_resources.git && \
+#     git clone https://github.com/rsennrich/subword-nmt.git && \
+#     cd .. && \
+#     git clone https://github.com/pytorch/fairseq.git
 
 RUN pip install --upgrade pip
-RUN pip install gunicorn flask sacremoses pandas mock sacrebleu tensorboardX && \
-    pip install mosestokenizer subword-nmt pyarrow indic-nlp-library
-RUN cd /app/fairseq && pip install ./ && pip install xformers
+RUN pip install gunicorn flask 
+# sacremoses pandas mock sacrebleu tensorboardX && \
+#     pip install mosestokenizer subword-nmt pyarrow indic-nlp-library
+# RUN cd /app/fairseq && pip install ./ && pip install xformers
 
 # RUN rm -rf /app/en2indic.zip
 
-ENV model_path=/app/en-indic
+# ENV model_path=/app/en-indic
 
 WORKDIR /app/indicTrans
 COPY app.py .
