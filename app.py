@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from datetime import datetime as dt
-from inference.engine import Model
+# from inference.engine import Model
 import os
 
 INDIC_LANG_CODES = ["as", "bn", "gu", "hi",
@@ -12,7 +12,7 @@ INDIC_LANGS = ["Assamese", "Bengali", "Gujarati",
 app = Flask(__name__)
 
 # load model
-model = Model(expdir=os.environ.get('model_path'))
+# model = Model(expdir=os.environ.get('model_path'))
 
 
 @app.route('/', methods=["GET"])
